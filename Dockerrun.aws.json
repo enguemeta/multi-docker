@@ -1,0 +1,30 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+     {
+       "name": "client",
+       "image": "enguemeta/multi-client",
+       "hostname": "client",
+       "essential": false
+     },
+     {
+      "name": "server",
+      "image": "enguemeta/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "enguemeta/multi-nginx",
+      "hostname": "nginx",
+      "essential": true, 
+       "portMappings" : [
+         {
+           "hostPort": 80,
+           "containerPort": 80
+        }
+       ],
+       "links" : ["client", "server"]
+    }
+  ]
+}
